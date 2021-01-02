@@ -1,8 +1,6 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
-const Application = () => {
-  return <h1>Hello!</h1>;
-};
+import { Application } from './components/Application/Application';
 
-ReactDOM.render(<Application />, window.document.querySelector("#app"));
+ReactDOM.render(<Application />, window.document.querySelector('#app'));
