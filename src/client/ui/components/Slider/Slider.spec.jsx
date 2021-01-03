@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+
 import * as React from 'react';
 import { mount } from '@cypress/react';
 
@@ -34,22 +35,22 @@ describe('<Slider>', () => {
   describe('should have', () => {
     it('button to choose previous value', () => {
       mount(<Slider {...sliderProps} value="1" />);
-      cy.get('div[test-name=difficulty] input[test-name=slider-previous-value-button]');
+      cy.get('div[data-test-name=difficulty] input[data-test-name=slider-previous-value-button]');
     });
     it('button to choose next value', () => {
       mount(<Slider {...sliderProps} value="1" />);
-      cy.get('div[test-name=difficulty] input[test-name=slider-next-value-button]');
+      cy.get('div[data-test-name=difficulty] input[data-test-name=slider-next-value-button]');
     });
     it('current value', () => {
       mount(<Slider {...sliderProps} value="1" />);
-      cy.get('div[test-name=difficulty] [test-name=slider-value]').contains('medium');
+      cy.get('div[data-test-name=difficulty] [data-test-name=slider-value]').contains('medium');
     });
   });
 
   describe('if first value selected', () => {
     it('previous value button should be disabled', () => {
       mount(<Slider {...sliderProps} value="0" />);
-      cy.get('div[test-name=difficulty] input[test-name=slider-previous-value-button]').should('be.disabled');
+      cy.get('div[data-test-name=difficulty] input[data-test-name=slider-previous-value-button]').should('be.disabled');
     });
 
     it(`next value button generates onChange event`, () => {
@@ -59,7 +60,7 @@ describe('<Slider>', () => {
       const onChangeSpy = cy.spy(handlers, 'onChange');
 
       mount(<Slider {...sliderProps} value="0" onChange={handlers.onChange} />).then(() => {
-        cy.get('div[test-name=difficulty] input[test-name=slider-next-value-button]')
+        cy.get('div[data-test-name=difficulty] input[data-test-name=slider-next-value-button]')
           .click({ force: true })
           .then(() => {
             expect(onChangeSpy).to.be.called;
@@ -75,7 +76,7 @@ describe('<Slider>', () => {
       const onChangeSpy = cy.spy(handlers, 'onChange');
 
       mount(<Slider {...sliderProps} value="0" onChange={handlers.onChange} />).then(() => {
-        cy.get('div[test-name=difficulty] input[test-name=slider-previous-value-button]')
+        cy.get('div[data-test-name=difficulty] input[data-test-name=slider-previous-value-button]')
           .click({ force: true })
           .then(() => {
             expect(onChangeSpy).not.to.be.called;
@@ -87,7 +88,7 @@ describe('<Slider>', () => {
   describe('if the last value selected', () => {
     it('next value button should be disabled', () => {
       mount(<Slider {...sliderProps} value="2" />);
-      cy.get('div[test-name=difficulty] input[test-name=slider-next-value-button]').should('be.disabled');
+      cy.get('div[data-test-name=difficulty] input[data-test-name=slider-next-value-button]').should('be.disabled');
     });
 
     it(`previous value button generates onChange event`, () => {
@@ -97,7 +98,7 @@ describe('<Slider>', () => {
       const onChangeSpy = cy.spy(handlers, 'onChange');
 
       mount(<Slider {...sliderProps} value="2" onChange={handlers.onChange} />).then(() => {
-        cy.get('div[test-name=difficulty] input[test-name=slider-previous-value-button]')
+        cy.get('div[data-test-name=difficulty] input[data-test-name=slider-previous-value-button]')
           .click({ force: true })
           .then(() => {
             expect(onChangeSpy).to.be.called;
@@ -113,7 +114,7 @@ describe('<Slider>', () => {
       const onChangeSpy = cy.spy(handlers, 'onChange');
 
       mount(<Slider {...sliderProps} value="2" onChange={handlers.onChange} />).then(() => {
-        cy.get('div[test-name=difficulty] input[test-name=slider-next-value-button]')
+        cy.get('div[data-test-name=difficulty] input[data-test-name=slider-next-value-button]')
           .click({ force: true })
           .then(() => {
             expect(onChangeSpy).not.to.be.called;

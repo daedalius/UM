@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import { SliderProps } from './interfaces';
 
+import { StyledWrapper, StyledButton, StyledValue } from './styles.ts';
+
 export class Slider extends React.PureComponent<SliderProps> {
   render() {
     const { name, value, options } = this.props;
@@ -9,25 +11,27 @@ export class Slider extends React.PureComponent<SliderProps> {
     const valueText = options.find((i) => i.value === value).text;
 
     return (
-      <div className="slider" test-name={name}>
-        <input
+      <StyledWrapper className="slider" data-test-name={name}>
+        <StyledButton
           type="button"
           className="slider__previous-value-button"
-          test-name="slider-previous-value-button"
+          data-test-name="slider-previous-value-button"
           disabled={!this.isPreviousValueButtonActive()}
           onClick={this.handlePrevoiusValueButtonClick}
           value="<"
         />
-        <span className="slider__value" test-name="slider-value">{valueText}</span>
-        <input
+        <StyledValue className="slider__value" data-test-name="slider-value">
+          {valueText}
+        </StyledValue>
+        <StyledButton
           type="button"
           className="slider__next-value-button"
-          test-name="slider-next-value-button"
+          data-test-name="slider-next-value-button"
           disabled={!this.isNextValueButtonActive()}
           onClick={this.handleNextValueButtonClick}
           value=">"
         />
-      </div>
+      </StyledWrapper>
     );
   }
 

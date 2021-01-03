@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import '../../global.css';
+
 import { Slider } from './Slider';
 
 export default {
